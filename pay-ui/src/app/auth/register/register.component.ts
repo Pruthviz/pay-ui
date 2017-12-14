@@ -21,6 +21,22 @@ function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   return { 'match': true };
 }
 
+
+
+function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
+  let passwordControl = c.get('password');
+  let confirmControl = c.get('confirmPassword');
+
+  if (passwordControl.pristine || confirmControl.pristine) {
+    return null;
+  }
+
+  if (passwordControl.value === confirmControl.value) {
+    return null;
+  }
+  return { 'match': true };
+}
+
 function ratingRange(min: number, max: number): ValidatorFn {
   return (c: AbstractControl): { [key: string]: boolean } | null => {
     if (c.value !== undefined && (isNaN(c.value) || c.value < min || c.value > max)) {
@@ -38,86 +54,58 @@ function ratingRange(min: number, max: number): ValidatorFn {
 export class RegisterComponent implements OnInit {
   customerForm: FormGroup;
   customer: Customer = new Customer();
-  emailMessage: string;
+  passwordMessage: string;
+  showMiddle: boolean = false;
 
   get addresses(): FormArray {
     return <FormArray>this.customerForm.get('addresses');
   }
 
   private validationMessages = {
-    required: 'Please enter your email address.',
-    pattern: 'Please enter a valid email address.'
+    required: 'Please enter your password.',
+    pattern: 'please enter a valid password'
   };
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
+      passwordGroup: this.fb.group({
+        password: ['', [Validators.required]],
+        confirmPassword: ['', Validators.required],
+      }, { validator: passwordMatcher }),
       firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.maxLength(50)]],
-      emailGroup: this.fb.group({
-        email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
-        confirmEmail: ['', Validators.required],
-      }, { validator: emailMatcher }),
-      phone: '',
-      notification: 'email',
-      rating: ['', ratingRange(1, 5)],
-      sendCatalog: true,
-      addresses: this.fb.array([this.buildAddress()])
+      middleName: '',
+      lastName: ['', [Validators.required]],
+      preferredName: '',
+      email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
+      phone: ['', [Validators.required,Validators.minLength(10)]],
+      countryCode: ['', [Validators.required, Validators.minLength(2)]],
+     
     });
 
-    this.customerForm.get('notification').valueChanges
-      .subscribe(value => this.setNotification(value));
-
-    const emailControl = this.customerForm.get('emailGroup.email');
-    emailControl.valueChanges.debounceTime(1000).subscribe(value =>
-      this.setMessage(emailControl));
+    const passwordControl = this.customerForm.get('passwordGroup.password');
+    passwordControl.valueChanges.debounceTime(1000).subscribe(value =>
+      this.setMessage(passwordControl));
   }
 
-  addAddress(): void {
-    this.addresses.push(this.buildAddress());
-  }
+ 
+  
 
-  buildAddress(): FormGroup {
-    return this.fb.group({
-      addressType: 'home',
-      street1: '',
-      street2: '',
-      city: '',
-      state: '',
-      zip: ''
-    });
-  }
-
-  populateTestData(): void {
-    this.customerForm.patchValue({
-      firstName: 'Jack',
-      lastName: 'Harkness',
-      emailGroup: { email: 'jack@torchwood.com', confirmEmail: 'jack@torchwood.com' }
-    });
-  }
-
+ 
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
   }
 
   setMessage(c: AbstractControl): void {
-    this.emailMessage = '';
+    this.passwordMessage = '';
     if ((c.touched || c.dirty) && c.errors) {
-      this.emailMessage = Object.keys(c.errors).map(key =>
+      this.passwordMessage = Object.keys(c.errors).map(key =>
         this.validationMessages[key]).join(' ');
     }
   }
 
-  setNotification(notifyVia: string): void {
-    const phoneControl = this.customerForm.get('phone');
-    if (notifyVia === 'text') {
-      phoneControl.setValidators(Validators.required);
-    } else {
-      phoneControl.clearValidators();
-    }
-    phoneControl.updateValueAndValidity();
-  }
+ 
 }
 
 
