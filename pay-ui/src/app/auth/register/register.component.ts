@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Customer } from './../../models/customer';
 
 import { Component, OnInit } from '@angular/core';
@@ -52,6 +53,7 @@ function ratingRange(min: number, max: number): ValidatorFn {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  msgs: any=[];
   customerForm: FormGroup;
   customer: Customer = new Customer();
   passwordMessage: string;
@@ -66,7 +68,7 @@ export class RegisterComponent implements OnInit {
     pattern: 'please enter a valid password'
   };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -79,9 +81,9 @@ export class RegisterComponent implements OnInit {
       lastName: ['', [Validators.required]],
       preferredName: '',
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
-      phone: ['', [Validators.required,Validators.minLength(10)]],
+      phone: ['', [Validators.required, Validators.minLength(10)]],
       countryCode: ['', [Validators.required, Validators.minLength(2)]],
-     
+
     });
 
     const passwordControl = this.customerForm.get('passwordGroup.password');
@@ -89,12 +91,16 @@ export class RegisterComponent implements OnInit {
       this.setMessage(passwordControl));
   }
 
- 
-  
 
- 
+
+
+
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
+    this.authService.register(this.customerForm.value).subscribe(response => {
+      console.log(response)
+      this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+    });
   }
 
   setMessage(c: AbstractControl): void {
@@ -105,7 +111,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
- 
+
 }
 
 
