@@ -53,6 +53,7 @@ function ratingRange(min: number, max: number): ValidatorFn {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  msgs: any=[];
   customerForm: FormGroup;
   customer: Customer = new Customer();
   passwordMessage: string;
@@ -96,7 +97,10 @@ export class RegisterComponent implements OnInit {
 
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
-    this.authService.register(this.customerForm.value).subscribe(response=>console.log(response));
+    this.authService.register(this.customerForm.value).subscribe(response => {
+      console.log(response)
+      this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+    });
   }
 
   setMessage(c: AbstractControl): void {

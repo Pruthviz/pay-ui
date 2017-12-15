@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +8,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesModule } from 'primeng/primeng';
+import { MessageModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ],
+    MessagesModule,
+    MessageModule,
+    HttpClientModule,
+    BrowserAnimationsModule  ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })

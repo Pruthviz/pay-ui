@@ -6,8 +6,8 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   constructor(private httpClient: HttpClient) { }
-  
-  register(formData) { 
+
+  register(formData) {
 
     let data =
       {
@@ -20,11 +20,24 @@ export class AuthService {
         mobile: formData.phone,
         device_signature: 'device_signature',
       }
-    
-    return this.httpClient.post(AppSettings.ApiEndPoint+"/users",data);
-    
-    
-    
+
+    return this.httpClient.post(AppSettings.ApiEndPoint + "/users", data);
+
+
+
+  }
+
+
+  login(formData) {
+
+    let data =
+      {
+        grant_type: 'client_credentials',
+        email: formData.email,
+        password: formData.password,
+        device_signature: 'device_signature'
+      }
+    return this.httpClient.post(AppSettings.ApiEndPoint + "/auth", data);
   }
 
 
