@@ -13,9 +13,9 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('firstName').touched || 
                                               customerForm.get('firstName').dirty) &&
                                               !customerForm.get('firstName').valid }">
-                    <label class="col-md-2 control-label" for="firstNameId">First Name</label>
+                    <label class="col-md-3 control-label" for="firstNameId">First Name</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="firstNameId" type="text" placeholder="First Name (required)" formControlName="firstName" />
                         <span class="help-block" *ngIf="(customerForm.get('firstName').touched || 
                                                          customerForm.get('firstName').dirty) && 
@@ -42,18 +42,18 @@
                 <div [hidden]="!showMiddle" class="form-group" [ngClass]="{'has-error': (customerForm.get('middleName').touched || 
                                               customerForm.get('middleName').dirty) &&
                                               !customerForm.get('middleName').valid }">
-                    <label class="col-md-2 control-label" for="middleNameId">Middle Name</label>
+                    <label class="col-md-3 control-label" for="middleNameId">Middle Name</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="middleNameId" type="text" placeholder="Middle Name (optional)" formControlName="middleName" />
                     </div>
                 </div>
 
 
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && !customerForm.get('lastName').valid }">
-                    <label class="col-md-2 control-label" for="lastNameId">Last Name</label>
+                    <label class="col-md-3 control-label" for="lastNameId">Last Name</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" formControlName="lastName" />
                         <span class="help-block" *ngIf="(customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && customerForm.get('lastName').errors">
                             <span *ngIf="customerForm.get('lastName').errors.required">
@@ -70,9 +70,9 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('preferredName').touched || 
                                               customerForm.get('preferredName').dirty) &&
                                               !customerForm.get('preferredName').valid }">
-                    <label class="col-md-2 control-label" for="preferredNameId">Preferred Name</label>
+                    <label class="col-md-3 control-label" for="preferredNameId">Preferred Name</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="preferredNameId" type="text" placeholder="Preferred Name (optional)" formControlName="preferredName" />
                     </div>
                 </div>
@@ -82,9 +82,9 @@
 
 
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }">
-                    <label class="col-md-2 control-label" for="emailId">Email Address</label>
+                    <label class="col-md-3 control-label" for="emailId">Email Address</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="emailId" type="text" placeholder="Email Address (required)" formControlName="email" />
                         <span class="help-block" *ngIf="(customerForm.get('email').touched || customerForm.get('email').dirty) && customerForm.get('email').errors">
                             <span *ngIf="customerForm.get('email').errors.required">
@@ -101,9 +101,9 @@
                 <div formGroupName="passwordGroup" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
 
                     <div class="form-group" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
-                        <label class="col-md-2 control-label" for="passwordId">Password</label>
+                        <label class="col-md-3 control-label" for="passwordId">Password</label>
 
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <input class="form-control" id="passwordId" type="password" placeholder="Password (required)" formControlName="password" />
                             <!-- <span class="help-block" *ngIf="(customerForm.get('passwordGroup.password').touched || 
                                                             customerForm.get('passwordGroup.password').dirty) && 
@@ -126,9 +126,9 @@
                     <div class="form-group" [ngClass]="{'has-error': (customerForm.get('passwordGroup.confirmPassword').touched || 
                                                   customerForm.get('passwordGroup.confirmPassword').dirty) && 
                                                   !customerForm.get('passwordGroup.confirmPassword').valid }">
-                        <label class="col-md-2 control-label" for="confirmPasswordId">Confirm Password</label>
+                        <label class="col-md-3 control-label" for="confirmPasswordId">Confirm Password</label>
 
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <input class="form-control" id="confirmPasswordId" type="password" placeholder="Confirm Password (required)" formControlName="confirmPassword" />
                             <span class="help-block" *ngIf="(customerForm.get('passwordGroup.confirmPassword').touched || 
                                                             customerForm.get('passwordGroup.confirmPassword').dirty) && 
@@ -159,9 +159,9 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('phone').touched || 
                                               customerForm.get('phone').dirty) &&
                                               !customerForm.get('phone').valid }">
-                    <label class="col-md-2 control-label" for="phoneId">Phone</label>
+                    <label class="col-md-3 control-label" for="phoneId">Phone</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="phoneId" type="tel" placeholder="Phone" formControlName="phone" />
                         <span class="help-block" *ngIf="(customerForm.get('phone').touched || customerForm.get('phone').dirty) && customerForm.get('phone').errors">
                             <span *ngIf="customerForm.get('phone').errors.required">
@@ -174,9 +174,9 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('countryCode').touched || 
                                               customerForm.get('countryCode').dirty) &&
                                               !customerForm.get('countryCode').valid }">
-                    <label class="col-md-2 control-label" for="countryCodephoneId">Mobile Country Code</label>
+                    <label class="col-md-3 control-label" for="countryCodephoneId">Mobile Country Code</label>
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                         <input class="form-control" id="countryCodeId" type="tel" placeholder="Mobile Country Code" formControlName="countryCode" />
                         <span class="help-block" *ngIf="(customerForm.get('countryCode').touched || customerForm.get('countryCode').dirty) && customerForm.get('countryCode').errors">
                             <span *ngIf="customerForm.get('countryCode').errors.required">
@@ -185,14 +185,15 @@
                         </span>
                     </div>
                 </div>
-
+                <br />
                 <div class="form-group">
-                    <div class="col-md-4 col-md-offset-2">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-4 col-md-offset-2 ">
                         <span>
-                            <button class="btn btn-primary"
-                                    type="submit"
-                                    [disabled]="!customerForm.valid">
-                                Save
+                            <button class="btn btn-primary "
+                                    type="submit "
+                                    [disabled]="!customerForm.valid ">
+                                REGISTER
                             </button>
                         </span>
 
