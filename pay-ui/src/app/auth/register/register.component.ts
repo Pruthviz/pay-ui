@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
+import { Router } from '@angular/router';
 
 
 
@@ -68,7 +69,7 @@ export class RegisterComponent implements OnInit {
     pattern: 'please enter a valid password'
   };
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -97,11 +98,29 @@ export class RegisterComponent implements OnInit {
 
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
-    this.authService.register(this.customerForm.value).subscribe(response => {
-      console.log(response)
-      this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
-    });
+    this.authService.register(this.customerForm.value).subscribe(data => {
+      console.log(data.token);
+      this.handleSuccess(data, this);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.userId);
+      this.router.navigate(['/home']);
+    }, err => this.handleError(err, this));
   }
+
+
+  handleSuccess(data, that) {
+    console.log('success')
+    let message = data.message;
+    that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
+  }
+
+  handleError(err, that) {
+
+    let message = err.error.message;
+    that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
+
+  }
+
 
   setMessage(c: AbstractControl): void {
     this.passwordMessage = '';

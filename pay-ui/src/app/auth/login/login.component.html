@@ -13,14 +13,14 @@
 
                     <div class="col-md-6">
                         <input class="form-control" id="emailId" type="text" placeholder="Email Address (required)" formControlName="email" />
-                        <span class="help-block" *ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors">
+                        <!-- <span class="help-block" *ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').errors">
                             <span *ngIf="loginForm.get('email').errors.required">
                                 Please enter your email address.
                             </span>
                         <span *ngIf="loginForm.controls.email.errors.pattern">
                                 Please enter a valid email address.
                             </span>
-                        </span>
+                        </span> -->
                     </div>
                 </div>
 
@@ -31,11 +31,11 @@
 
                     <div class="col-md-6">
                         <input class="form-control" id="passwordId" type="password" placeholder="password" formControlName="password" />
-                        <span class="help-block" *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
+                        <!-- <span class="help-block" *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
                             <span *ngIf="loginForm.get('password').errors.required">
                                 Please enter your password.
                             </span>
-                        </span>
+                        </span> -->
                     </div>
                 </div>
 

@@ -2,6 +2,9 @@ import { AppSettings } from './../app.settings';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthService {
@@ -21,7 +24,9 @@ export class AuthService {
         device_signature: 'device_signature',
       }
 
-    return this.httpClient.post(AppSettings.ApiEndPoint + "/users", data);
+    return this.httpClient.post(AppSettings.ApiEndPoint + "/users", data).catch((error: Response) => {
+      return Observable.throw(error.json());
+    });
 
 
 
@@ -37,7 +42,9 @@ export class AuthService {
         password: formData.password,
         device_signature: 'device_signature'
       }
-    return this.httpClient.post(AppSettings.ApiEndPoint + "/auth", data);
+    return this.httpClient.post(AppSettings.ApiEndPoint + "/auth", data).catch((error: Response) => {
+      return Observable.throw(error.json());
+    });
   }
 
 
