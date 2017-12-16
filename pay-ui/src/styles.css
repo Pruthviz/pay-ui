@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+.label-alter {
+    font-weight: 400 !important;
+}
+
+.label-disabled {
+    color: #aeaeae;
+}

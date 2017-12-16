@@ -15,6 +15,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { CustomerComponent } from './customer/customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -50,7 +50,7 @@ export class CustomerComponent implements OnInit {
     that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
   }
 
-  Edit() {
+  Edit():void {
     this.router.navigate(['/editcustomer']);
 }
 

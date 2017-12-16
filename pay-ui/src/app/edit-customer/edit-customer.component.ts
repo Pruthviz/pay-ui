@@ -14,7 +14,7 @@ export class EditCustomerComponent implements OnInit {
   msgs: any = [];
   customerForm: FormGroup;
   showMiddle: boolean = true;
-
+  // isDisabled = false; 
   constructor(private fb: FormBuilder, private customerService: CustomerService, public router: Router) { }
 
   ngOnInit(): void {
