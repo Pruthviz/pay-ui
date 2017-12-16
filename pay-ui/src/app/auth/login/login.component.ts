@@ -26,26 +26,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(): void {
-    console.log('Saved: ' + JSON.stringify(this.loginForm.value));
+  login() {
     this.authService.login(this.loginForm.value).subscribe(data => {
-      console.log(data.token);
       this.handleSuccess(data, this);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userId', data.userId);
-      this.router.navigate(['/home']);
     }, err => this.handleError(err, this))
   }
 
 
   handleSuccess(data, that) {
-    
-    if (data.password[0] === "The password format is invalid.") { 
-      that.msgs.push({ severity: 'error', summary: 'invalid', detail: "The password format is invalid." });
+    if (data.password) {
+      if (data.password[0] === "The password format is invalid.") {
+        that.msgs.push({ severity: 'error', summary: 'Invalid Credentials', detail: "" });
+        return false;
+      }
     }
-
-    let message = data.message;
-    that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
+      else { 
+        localStorage.setItem('token', data.access_token);
+        this.router.navigate(['/customer']);
+      }
   }
 
   handleError(err, that) {

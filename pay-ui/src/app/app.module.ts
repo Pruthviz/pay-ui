@@ -11,12 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessagesModule } from 'primeng/primeng';
 import { MessageModule } from 'primeng/primeng';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
