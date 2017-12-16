@@ -101,8 +101,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.customerForm.value).subscribe(data => {
       console.log(data.token);
       this.handleSuccess(data, this);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userId', data.userId);
+      sessionStorage.setItem('token', data.access_token);
       this.router.navigate(['/home']);
     }, err => this.handleError(err, this));
   }

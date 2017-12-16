@@ -1,0 +1,196 @@
+<div class="panel panel-primary">
+    <p-messages [(value)]="msgs"></p-messages>
+    <div class="panel-heading">
+        Sign Up!
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="customerForm">
+            <fieldset>
+
+
+
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('firstName').touched || 
+                                              customerForm.get('firstName').dirty) &&
+                                              !customerForm.get('firstName').valid }">
+                    <label class="col-md-3 control-label" for="firstNameId">First Name</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="firstNameId" type="text" placeholder="First Name (required)" formControlName="firstName" />
+                        <span class="help-block" *ngIf="(customerForm.get('firstName').touched || 
+                                                         customerForm.get('firstName').dirty) && 
+                                                         customerForm.get('firstName').errors">
+                            <span *ngIf="customerForm.get('firstName').errors.required">
+                                Please enter your first name.
+                            </span>
+                        <span *ngIf="customerForm.get('firstName').errors.minlength">
+                                The first name must be longer than 3 characters.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div [hidden]="!showMiddle" class="form-group" [ngClass]="{'has-error': (customerForm.get('middleName').touched || 
+                                              customerForm.get('middleName').dirty) &&
+                                              !customerForm.get('middleName').valid }">
+                    <label class="col-md-3 control-label" for="middleNameId">Middle Name</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="middleNameId" type="text" placeholder="Middle Name (optional)" formControlName="middleName" />
+                    </div>
+                </div>
+
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && !customerForm.get('lastName').valid }">
+                    <label class="col-md-3 control-label" for="lastNameId">Last Name</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" formControlName="lastName" />
+                        <span class="help-block" *ngIf="(customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && customerForm.get('lastName').errors">
+                            <span *ngIf="customerForm.get('lastName').errors.required">
+                                Please enter your last name.
+                            </span>
+                        <span *ngIf="customerForm.controls.lastName.errors.maxlength">
+                                The last name must be less than 50 characters.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('preferredName').touched || 
+                                              customerForm.get('preferredName').dirty) &&
+                                              !customerForm.get('preferredName').valid }">
+                    <label class="col-md-3 control-label" for="preferredNameId">Preferred Name</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="preferredNameId" type="text" placeholder="Preferred Name (optional)" formControlName="preferredName" />
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }">
+                    <label class="col-md-3 control-label" for="emailId">Email Address</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="emailId" type="text" placeholder="Email Address (required)" formControlName="email" />
+                        <span class="help-block" *ngIf="(customerForm.get('email').touched || customerForm.get('email').dirty) && customerForm.get('email').errors">
+                            <span *ngIf="customerForm.get('email').errors.required">
+                                Please enter your email address.
+                            </span>
+                        <span *ngIf="customerForm.controls.email.errors.pattern">
+                                Please enter a valid email address.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- password, confirm-->
+                <div formGroupName="passwordGroup" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
+
+                    <div class="form-group" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
+                        <label class="col-md-3 control-label" for="passwordId">Password</label>
+
+                        <div class="col-md-5">
+                            <input class="form-control" id="passwordId" type="password" placeholder="Password (required)" formControlName="password" />
+                            <!-- <span class="help-block" *ngIf="(customerForm.get('passwordGroup.password').touched || 
+                                                            customerForm.get('passwordGroup.password').dirty) && 
+                                                            (customerForm.get('passwordGroup.password').errors ||
+                                                             customerForm.get('password').errors)">
+                            <span *ngIf="customerForm.get('passwordGroup.password').errors?.required">
+                                    Please enter your password.
+                                </span>
+
+                            <span *ngIf="customerForm.get('passwordGroup.password').errors?.minlength">
+                                   Password must contain minimum of 6 characters.
+                                </span>
+                            </span> -->
+                            <span class="help-block" *ngIf="passwordMessage">
+                                {{ passwordMessage }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-error': (customerForm.get('passwordGroup.confirmPassword').touched || 
+                                                  customerForm.get('passwordGroup.confirmPassword').dirty) && 
+                                                  !customerForm.get('passwordGroup.confirmPassword').valid }">
+                        <label class="col-md-3 control-label" for="confirmPasswordId">Confirm Password</label>
+
+                        <div class="col-md-5">
+                            <input class="form-control" id="confirmPasswordId" type="password" placeholder="Confirm Password (required)" formControlName="confirmPassword" />
+                            <span class="help-block" *ngIf="(customerForm.get('passwordGroup.confirmPassword').touched || 
+                                                            customerForm.get('passwordGroup.confirmPassword').dirty) && 
+                                                            (customerForm.get('passwordGroup.confirmPassword').errors ||
+                                                             customerForm.get('passwordGroup').errors)">
+                                <span *ngIf="customerForm.get('passwordGroup.confirmPassword').errors?.required">
+                                    Please confirm your password.
+                                </span>
+                            <span *ngIf="customerForm.get('passwordGroup').errors?.match">
+                                    The confirm password does not match with the password.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- password -->
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('phone').touched || 
+                                              customerForm.get('phone').dirty) &&
+                                              !customerForm.get('phone').valid }">
+                    <label class="col-md-3 control-label" for="phoneId">Phone</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="phoneId" type="tel" placeholder="Phone" formControlName="phone" />
+                        <span class="help-block" *ngIf="(customerForm.get('phone').touched || customerForm.get('phone').dirty) && customerForm.get('phone').errors">
+                            <span *ngIf="customerForm.get('phone').errors.required">
+                                Please enter your phone number.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{'has-error': (customerForm.get('countryCode').touched || 
+                                              customerForm.get('countryCode').dirty) &&
+                                              !customerForm.get('countryCode').valid }">
+                    <label class="col-md-3 control-label" for="countryCodephoneId">Mobile Country Code</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="countryCodeId" type="tel" placeholder="Mobile Country Code" formControlName="countryCode" />
+                        <span class="help-block" *ngIf="(customerForm.get('countryCode').touched || customerForm.get('countryCode').dirty) && customerForm.get('countryCode').errors">
+                            <span *ngIf="customerForm.get('countryCode').errors.required">
+                                Please select your mobile country code.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-4 col-md-offset-2 ">
+                        <span>
+                            <button class="btn btn-primary "
+                                    type="submit "
+                                    [disabled]="!customerForm.valid ">
+                                Update
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

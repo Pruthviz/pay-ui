@@ -1,3 +1,4 @@
+import { CustomerService } from './customer/customer.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -12,13 +13,15 @@ import { MessagesModule } from 'primeng/primeng';
 import { MessageModule } from 'primeng/primeng';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { CustomerComponent } from './customer/customer.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CustomerComponent
+    CustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { CustomerComponent } from './customer/customer.component';
     BrowserAnimationsModule,
     NgHttpLoaderModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
