@@ -27,13 +27,14 @@ export class CustomerComponent implements OnInit {
   }
 
 
-  getCustomer() { 
+
+  getCustomer() {
     this.customerService.getCustomer().subscribe(data => {
       this.handleSuccess(data, this);
     }, err => this.handleError(err, this))
   }
 
-  
+
 
   handleSuccess(data, that) {
     this.customer = {};
@@ -44,8 +45,8 @@ export class CustomerComponent implements OnInit {
     this.customer.email = data.email;
     this.customer.mobile = data.mobile.number;
     this.customer.countryCode = data.mobile.country_Code;
-  
-    
+
+
     let message = data.message;
     that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
   }

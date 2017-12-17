@@ -1,3 +1,30 @@
+<div class="wrapper">
+<a class="link hidden-xs dropdown-toggle show" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+  Hi,
+  <span data-ng-bind="vm.headData.data.customerName | titleCase">Harish Nalla</span>
+  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+</a>
+
+</div>
+<div class="dropdownChild">
+    <ul><li>
+    <a class="dropdown-item">My Profile</a></li>
+    <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
 <spinner [spinner]="spinkit.skDoubleBounce" [backgroundColor]="'#337ab7'"></spinner>
 <router-outlet>
 </router-outlet>
+
+<!-- <div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown link
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div> -->

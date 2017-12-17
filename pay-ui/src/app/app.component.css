@@ -1,0 +1,22 @@
+.dropdownChild {
+  width: 10%;
+  border: 1px solid #eee;
+}
+
+.dropdownChild ul li {
+  list-style: none;
+  padding: 3px;
+}
+
+.dropdownChild ul li:hover {
+  background-color: #337ab7;
+}
+
+.dropdownChild ul li a {
+  text-decoration: none;
+}
+
+.dropdownChild ul li:hover a {
+  color: white;
+  cursor: pointer;
+}
