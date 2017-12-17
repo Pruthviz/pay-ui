@@ -9,6 +9,7 @@ export class AppComponent implements OnInit {
   public spinkit = Spinkit;
   title = 'app';
   isLoggedIn: boolean = false;
+  isPopIn: boolean = true;
   constructor(){
 
   }
@@ -21,7 +22,14 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = false;
     }
   }
-
+  togglepop(){
+    if(this.isPopIn){
+      this.isPopIn=false;
+    }
+    else{
+      this.isPopIn=true;
+    }
+  }
 
   logout() {
     sessionStorage.clear();
