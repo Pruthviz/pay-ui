@@ -17,13 +17,13 @@ import { Router } from '@angular/router';
 export class CustomerComponent implements OnInit {
   customer: any={};
   msgs: any = [];
-
+  walletBalance;
   constructor(public router: Router, private customerService: CustomerService) { }
 
   ngOnInit(): void {
 
     this.getCustomer();
-
+    this.getBalance();
   }
 
 
@@ -33,6 +33,12 @@ export class CustomerComponent implements OnInit {
     }, err => this.handleError(err, this))
   }
 
+  getBalance() { 
+    this.customerService.getBalance().subscribe(data => {
+      this.walletBalance = data.funds.available.amount;
+    }, err => this.handleError(err, this))
+
+  }
   
 
   handleSuccess(data, that) {

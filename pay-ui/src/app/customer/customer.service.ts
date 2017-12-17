@@ -16,6 +16,12 @@ export class CustomerService {
         });
     }
 
+    getBalance() { 
+        return this.httpClient.post(AppSettings.ApiEndPoint + "/callback?access_token=" + sessionStorage.token,"").catch((error: Response) => {
+            return Observable.throw(error.json());
+        });
+    }
+
     update(formData) { 
 
         let data = {
