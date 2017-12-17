@@ -14,7 +14,7 @@ import { MessageModule } from 'primeng/primeng';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { CustomerComponent } from './customer/customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
     MessageModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgHttpLoaderModule
+    NgHttpLoaderModule,
+    BsDropdownModule
   ],
   providers: [AuthService, CustomerService],
   bootstrap: [AppComponent]
