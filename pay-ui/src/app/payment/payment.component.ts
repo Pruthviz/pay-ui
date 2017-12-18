@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PaymentService } from './payment.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,9 +10,9 @@ import { CreditCardValidator } from 'angular-cc-library';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
+  display: boolean = false;
   formGroup: FormGroup;
-  constructor(private fb: FormBuilder, private PaymentService:PaymentService) { }
+  constructor(private fb: FormBuilder, private paymentService:PaymentService,private router:Router) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -22,24 +23,44 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  pay() { 
 
-    this.PaymentService.payAmount("").subscribe(data => {
+  showDialog() {
+    this.display = true;
+  }
+  gotoProfile() { 
+    this.router.navigateByUrl("/customer");
+  }
+
+  pay() { 
+    this.paymentService.payAmount("").subscribe(data => {
       this.handleSuccess(data, this);
-     
     }, err => this.handleError(err, this));
   }
 
 
   handleSuccess(data, that) {
-    debugger;
-    // console.log('success')
-    // let message = data.message;
-    that.msgs.push({ severity: 'success', summary: 'valid', detail: "message" });
+
+    that.paymentService.payAmount("").subscribe(data => {
+      that.handleStatusSuccess(data, that);
+    }, err => that.handleStatusError(err, that));
+
+
+   
   }
 
+  handleStatusSuccess(data, tht) { 
+    tht.showDialog();
+
+  }
+
+  handleStatusError(err, tht) { 
+    tht.msgs.push({ severity: 'error', summary: 'Error', detail: "" });
+  }
+
+
+
+
   handleError(err, that) {
-    debugger;
     let message = err.error.message;
     that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
   }

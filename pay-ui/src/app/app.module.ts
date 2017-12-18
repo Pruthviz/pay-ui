@@ -3,7 +3,7 @@ import { CustomerService } from './customer/customer.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -17,6 +17,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { PaymentComponent } from './payment/payment.component';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { DialogModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CreditCardDirectivesModule } from 'angular-cc-library';
     HttpClientModule,
     BrowserAnimationsModule,
     NgHttpLoaderModule,
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    DialogModule
   ],
   providers: [AuthService, CustomerService, PaymentService],
   bootstrap: [AppComponent]
