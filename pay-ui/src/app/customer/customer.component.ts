@@ -53,10 +53,6 @@ export class CustomerComponent implements OnInit {
     this.customer.email = data.email;
     this.customer.mobile = data.mobile.number;
     this.customer.countryCode = data.mobile.country_Code;
-
-    sessionStorage.setItem('LoginUser', data.name.preferred);
-    let message = data.message;
-    that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
   }
 
   Edit():void {

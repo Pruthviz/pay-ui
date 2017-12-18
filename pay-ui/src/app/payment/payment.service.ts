@@ -37,6 +37,26 @@ export class PaymentService {
             return Observable.throw(error.json());
         });
     }
+    statusCall(id) { 
+        let data = {
+            'id': id
+        }
+        return this.httpClient.post(AppSettings.ApiEndPoint + "/status?access_token=" + sessionStorage.token, data).catch((error: Response) => {
+            return Observable.throw(error.json());
+        });
 
+    }
+
+
+    paymentCall(id) {
+        let data = {
+            'amount': 300,
+            'email':'test201@gmail.com'
+        }
+        return this.httpClient.post(AppSettings.ApiEndPoint + "/payment?access_token=" + sessionStorage.token, data).catch((error: Response) => {
+            return Observable.throw(error);
+        });
+
+    }
 
 }

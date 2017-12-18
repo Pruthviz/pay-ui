@@ -18,6 +18,7 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { PaymentComponent } from './payment/payment.component';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { DialogModule } from 'primeng/primeng';
+import { GrowlModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DialogModule } from 'primeng/primeng';
     BrowserAnimationsModule,
     NgHttpLoaderModule,
     CreditCardDirectivesModule,
-    DialogModule
+    DialogModule,
+    GrowlModule
   ],
   providers: [AuthService, CustomerService, PaymentService],
   bootstrap: [AppComponent]

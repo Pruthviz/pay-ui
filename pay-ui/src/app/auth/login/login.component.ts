@@ -1,3 +1,4 @@
+import { CustomerService } from './../../customer/customer.service';
 import { AuthService } from './../auth.service';
 import { Customer } from './../../models/customer';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -15,12 +16,12 @@ export class LoginComponent implements OnInit {
 
   @Output() loginParam = new EventEmitter();
 
-  msgs: any=[];
+  msgs: any = [];
   loginForm: FormGroup;
-  customer: Customer = new Customer();
+  customer: any = {};
 
 
-  constructor(private fb: FormBuilder, private authService: AuthService,public router : Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, public router: Router,private customerService:CustomerService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -41,15 +42,41 @@ export class LoginComponent implements OnInit {
       if (data.password[0] === "The password format is invalid.") {
         that.loginParam.emit(false);
         that.msgs.push({ severity: 'error', summary: 'Invalid Credentials', detail: "" });
-        return false;
       }
     }
-      else { 
-        sessionStorage.setItem('token', data.access_token);
-        // sessionStorage.setItem('LoginUser', data.name.preferred);
-      that.loginParam.emit(true);
-        this.router.navigateByUrl('/customer');
-      }
+    else {
+      sessionStorage.setItem('token', data.access_token);
+      
+
+
+      that.customerService.getCustomer().subscribe(data => {
+        this.customer.firstName = data.name.first;
+        this.customer.middleName = data.name.middle;
+        this.customer.lastName = data.name.last;
+        this.customer.preferredName = data.name.preferred;
+        this.customer.email = data.email;
+        this.customer.mobile = data.mobile.number;
+        this.customer.countryCode = data.mobile.country_Code;
+        if (data.name.preferred) {
+          sessionStorage.setItem('loginUser', data.name.preferred);
+          that.loginParam.emit({ isLoggedIn: true, loginUser: data.name.preferred });
+          this.router.navigate(['/customer']);
+        }
+        else { 
+          sessionStorage.setItem('loginUser', data.name.first + " " + data.name.last);
+          that.loginParam.emit({ isLoggedIn: true, loginUser: data.name.first + " " + data.name.last});
+          this.router.navigate(['/customer']);
+        }
+       
+       
+        
+
+      }, err => this.handleError(err, this))
+
+
+
+      
+    }
   }
 
   handleError(err, that) {

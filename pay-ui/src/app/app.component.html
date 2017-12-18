@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="isLoggedIn">
     <a class="login-a-user" (click)="togglepop()">
         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Hi,
-        <span data-ng-bind="vm.headData.data.customerName | titleCase">{{UserName}}</span>
+        <span data-ng-bind="vm.headData.data.customerName | titleCase">{{loginUser}}</span>
         <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     </a>
     <div class="dropdownChild" [hidden]="isPopIn">
@@ -13,8 +13,9 @@
     </div>
 </div>
 
-
-<app-login *ngIf="!isLoggedIn" (loginParam)="fromLoginPage($event)"></app-login>
+<a *ngIf="!isLoggedIn" (click)="toggleLogin()">go to {{showLogin?"Register":"Login"}}</a>
+<app-login [hidden]="!showLogin" *ngIf="!isLoggedIn" (loginParam)="fromLoginPage($event)"></app-login>
+<app-register [hidden]="showLogin" *ngIf="!isLoggedIn" (loginParam)="fromLoginPage($event)"></app-register>
 
 <spinner [spinner]="spinkit.skDoubleBounce" [backgroundColor]="'#337ab7'">
 </spinner>

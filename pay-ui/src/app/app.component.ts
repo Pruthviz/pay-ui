@@ -11,21 +11,25 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean = false;
   isPopIn: boolean = true;
   Isheader: boolean = true;
-  
-  UserName: string = "";
+  showLogin: boolean = true;
+  loginUser: string = "";
   constructor(){
 
   }
 
+  toggleLogin() { 
+    this.showLogin = !this.showLogin;
+  }
 
-
-  fromLoginPage(val) { 
-    this.isLoggedIn = val;
+  fromLoginPage(data) { 
+    this.isLoggedIn = data.isLoggedIn;
+    this.loginUser = data.loginUser;
+    this.isPopIn = true;
   }
 
   ngOnInit() {
-    if(sessionStorage.LoginUser){
-    this.UserName=sessionStorage.LoginUser;
+    if (sessionStorage.loginUser){
+      this.loginUser = sessionStorage.loginUser;
     }
     if (sessionStorage.token) {
       this.Isheader=false;
