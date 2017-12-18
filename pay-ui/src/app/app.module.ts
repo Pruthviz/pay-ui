@@ -14,7 +14,8 @@ import { MessageModule } from 'primeng/primeng';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
 import { CustomerComponent } from './customer/customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaymentComponent } from './payment/payment.component';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     RegisterComponent,
     LoginComponent,
     CustomerComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     HttpClientModule,
     BrowserAnimationsModule,
     NgHttpLoaderModule,
-    BsDropdownModule
+    CreditCardDirectivesModule
   ],
   providers: [AuthService, CustomerService],
   bootstrap: [AppComponent]

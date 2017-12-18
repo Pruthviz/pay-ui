@@ -1,3 +1,4 @@
+import { PaymentComponent } from './payment/payment.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "customer", component: CustomerComponent },
-  { path: "editcustomer", component: EditCustomerComponent }
+  { path: "editcustomer", component: EditCustomerComponent },
+  { path: "payment", component: PaymentComponent }
 ];
 
 @NgModule({

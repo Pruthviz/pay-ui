@@ -9,20 +9,6 @@ import { Router } from '@angular/router';
 
 
 
-function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
-  let emailControl = c.get('email');
-  let confirmControl = c.get('confirmEmail');
-
-  if (emailControl.pristine || confirmControl.pristine) {
-    return null;
-  }
-
-  if (emailControl.value === confirmControl.value) {
-    return null;
-  }
-  return { 'match': true };
-}
-
 
 
 function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
@@ -39,14 +25,7 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
   return { 'match': true };
 }
 
-function ratingRange(min: number, max: number): ValidatorFn {
-  return (c: AbstractControl): { [key: string]: boolean } | null => {
-    if (c.value !== undefined && (isNaN(c.value) || c.value < min || c.value > max)) {
-      return { 'range': true };
-    };
-    return null;
-  };
-}
+
 
 @Component({
   selector: 'app-register',
@@ -60,9 +39,7 @@ export class RegisterComponent implements OnInit {
   passwordMessage: string;
   showMiddle: boolean = false;
 
-  get addresses(): FormArray {
-    return <FormArray>this.customerForm.get('addresses');
-  }
+  
 
   private validationMessages = {
     required: 'Please enter your password.',

@@ -1,0 +1,20 @@
+<form class="form-horizontal" novalidate (ngSubmit)="pay()" [formGroup]="formGroup">
+
+
+    Name:
+    <div>
+        <input type="text" formControlName="cardName">
+    </div>
+
+
+    <input id="cc-number" formControlName="creditCard" type="tel" autocomplete="cc-number" ccNumber maxlength="19" placeholder="**** **** **** ****">
+    <input id="cc-exp-date" formControlName="expirationDate" type="tel" autocomplete="cc-exp" ccExp placeholder="MM/YYYY">
+    <input id="cc-cvc" formControlName="cvc" type="tel" autocomplete="off" ccCvc placeholder="***">
+    <!-- <br> CVC: <input type="tel" type="tel" autocomplete="cc-cvc" id="cc-csc" ccCvc> -->
+    <br><br>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!formGroup.valid">
+                                PAY
+                            </button>
+
+</form>
