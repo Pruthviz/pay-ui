@@ -1,30 +1,35 @@
-<div class="wrapper" *ngIf="!Isheader">
-<a class="login-a-user" (click)="togglepop()" >
-    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-  Hi,
-  <span data-ng-bind="vm.headData.data.customerName | titleCase">{{UserName}}</span>
-  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-</a>
-<div class="dropdownChild" [hidden]="isPopIn">
-  <ul><li>
-  <a class="dropdown-item">My Profile</a></li>
-  <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
-  </ul>
-</div>
+<div class="wrapper" *ngIf="isLoggedIn">
+    <a class="login-a-user" (click)="togglepop()">
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Hi,
+        <span data-ng-bind="vm.headData.data.customerName | titleCase">{{UserName}}</span>
+        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </a>
+    <div class="dropdownChild" [hidden]="isPopIn">
+        <ul>
+            <li>
+                <a class="dropdown-item">My Profile</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+        </ul>
+    </div>
 </div>
 
-<spinner [spinner]="spinkit.skDoubleBounce" [backgroundColor]="'#337ab7'"></spinner>
-<router-outlet>
+
+<app-login *ngIf="!isLoggedIn" (loginParam)="fromLoginPage($event)"></app-login>
+
+<spinner [spinner]="spinkit.skDoubleBounce" [backgroundColor]="'#337ab7'">
+</spinner>
+
+<router-outlet *ngIf="isLoggedIn">
 </router-outlet>
 
-<!-- <div class="dropdown show">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!-- <div class=" dropdown show ">
+    <a class="btn btn-secondary dropdown-toggle " href="# " role="button " id="dropdownMenuLink " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">
       Dropdown link
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-menu " aria-labelledby="dropdownMenuLink ">
+      <a class="dropdown-item " href="# ">Action</a>
+      <a class="dropdown-item " href="# ">Another action</a>
+      <a class="dropdown-item " href="# ">Something else here</a>
     </div>
   </div> -->

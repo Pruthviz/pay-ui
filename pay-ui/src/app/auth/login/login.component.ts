@@ -1,6 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Customer } from './../../models/customer';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import { Router } from '@angular/router';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() loginParam = new EventEmitter();
+
   msgs: any=[];
   loginForm: FormGroup;
   customer: Customer = new Customer();
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit {
   handleSuccess(data, that) {
     if (data.password) {
       if (data.password[0] === "The password format is invalid.") {
+        that.loginParam.emit(false);
         that.msgs.push({ severity: 'error', summary: 'Invalid Credentials', detail: "" });
         return false;
       }
@@ -43,11 +47,13 @@ export class LoginComponent implements OnInit {
       else { 
         sessionStorage.setItem('token', data.access_token);
         // sessionStorage.setItem('LoginUser', data.name.preferred);
+      that.loginParam.emit(true);
         this.router.navigateByUrl('/customer');
       }
   }
 
   handleError(err, that) {
+    that.loginParam.emit(false);
     that.msgs.push({ severity: 'error', summary: 'Invalid Credentials', detail: "" });
   }
 

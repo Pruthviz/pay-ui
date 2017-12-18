@@ -17,6 +17,12 @@ export class AppComponent implements OnInit {
 
   }
 
+
+
+  fromLoginPage(val) { 
+    this.isLoggedIn = val;
+  }
+
   ngOnInit() {
     if(sessionStorage.LoginUser){
     this.UserName=sessionStorage.LoginUser;

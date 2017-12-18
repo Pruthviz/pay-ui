@@ -7,8 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
-  { path: "login", component: LoginComponent },
+  { path: '', redirectTo: 'customer', pathMatch: 'full' },
   { path: "register", component: RegisterComponent },
   { path: "customer", component: CustomerComponent },
   { path: "editcustomer", component: EditCustomerComponent },
