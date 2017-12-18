@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     }
       else { 
         sessionStorage.setItem('token', data.access_token);
+        sessionStorage.setItem('LoginUser', data.name.preferred);
         this.router.navigate(['/customer']);
       }
   }
