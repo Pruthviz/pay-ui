@@ -4,7 +4,7 @@
         Update Customer Details!
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="customerForm">
+        <form class="form-horizontal" novalidate (ngSubmit)="update()" [formGroup]="customerForm">
             <fieldset>
 
 
@@ -59,7 +59,7 @@
                             <span *ngIf="customerForm.get('lastName').errors.required">
                                 Please enter your last name.
                             </span>
-                        <span *ngIf="customerForm.controls.lastName.errors.maxlength">
+                        <span *ngIf="customerForm.get('lastName').errors.maxlength">
                                 The last name must be less than 50 characters.
                             </span>
                         </span>
@@ -90,61 +90,14 @@
                             <span *ngIf="customerForm.get('email').errors.required">
                                 Please enter your email address.
                             </span>
-                        <span *ngIf="customerForm.controls.email.errors.pattern">
+                        <span *ngIf="customerForm.get('email').errors.pattern">
                                 Please enter a valid email address.
                             </span>
                         </span>
                     </div>
                 </div>
 
-                <!-- password, confirm-->
-                <div formGroupName="passwordGroup" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
 
-                    <div class="form-group" [ngClass]="{'has-error': customerForm.get('passwordGroup').errors }">
-                        <label class="col-md-3 control-label" for="passwordId">Password</label>
-
-                        <div class="col-md-5">
-                            <input class="form-control" id="passwordId" type="password" placeholder="Password (required)" formControlName="password" />
-                            <!-- <span class="help-block" *ngIf="(customerForm.get('passwordGroup.password').touched || 
-                                                            customerForm.get('passwordGroup.password').dirty) && 
-                                                            (customerForm.get('passwordGroup.password').errors ||
-                                                             customerForm.get('password').errors)">
-                            <span *ngIf="customerForm.get('passwordGroup.password').errors?.required">
-                                    Please enter your password.
-                                </span>
-
-                            <span *ngIf="customerForm.get('passwordGroup.password').errors?.minlength">
-                                   Password must contain minimum of 6 characters.
-                                </span>
-                            </span> -->
-                            <span class="help-block" *ngIf="passwordMessage">
-                                {{ passwordMessage }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group" [ngClass]="{'has-error': (customerForm.get('passwordGroup.confirmPassword').touched || 
-                                                  customerForm.get('passwordGroup.confirmPassword').dirty) && 
-                                                  !customerForm.get('passwordGroup.confirmPassword').valid }">
-                        <label class="col-md-3 control-label" for="confirmPasswordId">Confirm Password</label>
-
-                        <div class="col-md-5">
-                            <input class="form-control" id="confirmPasswordId" type="password" placeholder="Confirm Password (required)" formControlName="confirmPassword" />
-                            <span class="help-block" *ngIf="(customerForm.get('passwordGroup.confirmPassword').touched || 
-                                                            customerForm.get('passwordGroup.confirmPassword').dirty) && 
-                                                            (customerForm.get('passwordGroup.confirmPassword').errors ||
-                                                             customerForm.get('passwordGroup').errors)">
-                                <span *ngIf="customerForm.get('passwordGroup.confirmPassword').errors?.required">
-                                    Please confirm your password.
-                                </span>
-                            <span *ngIf="customerForm.get('passwordGroup').errors?.match">
-                                    The confirm password does not match with the password.
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!-- password -->
 
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('phone').touched || 
                                               customerForm.get('phone').dirty) &&

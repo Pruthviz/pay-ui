@@ -63,6 +63,12 @@ export class CustomerComponent implements OnInit {
     let message = err.error.message;
     that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
   }
+
+
+
+  gotoPayment() {
+    this.router.navigateByUrl('/payment');
+    }
 }
 
 

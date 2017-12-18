@@ -22,6 +22,22 @@ export class EditCustomerComponent implements OnInit {
   }
 
   getCustomer() {
+
+this.customerForm = this.fb.group({
+      firstName: ["", [Validators.required, Validators.minLength(3)]],
+      middleName: "",
+      lastName: ["", [Validators.required]],
+      preferredName: "",
+      email: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
+      phone: ["", [Validators.required, Validators.minLength(10)]],
+      countryCode: ["", [Validators.required, Validators.minLength(2)]]
+      //,
+      // gender: '',
+      // title: '',
+      // nationality: ''
+    });
+
+
     this.customerService.getCustomer().subscribe(data => {
       this.handleSuccess(data, this);
     }, err => this.handleError(err, this))
@@ -47,10 +63,11 @@ export class EditCustomerComponent implements OnInit {
       preferredName: data.name.preferred,
       email: [data.email, [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: [data.mobile.number, [Validators.required, Validators.minLength(10)]],
-      countryCode: [data.mobile.country_code, [Validators.required, Validators.minLength(2)]],
-      gender: '',
-      title: '',
-      nationality: ''
+      countryCode: [data.mobile.country_code, [Validators.required, Validators.minLength(2)]]
+      //,
+      // gender: '',
+      // title: '',
+      // nationality: ''
     });
 
     console.log('success')
