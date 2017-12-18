@@ -1,3 +1,4 @@
+import { PaymentService } from './payment/payment.service';
 import { CustomerService } from './customer/customer.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,7 +39,7 @@ import { CreditCardDirectivesModule } from 'angular-cc-library';
     NgHttpLoaderModule,
     CreditCardDirectivesModule
   ],
-  providers: [AuthService, CustomerService],
+  providers: [AuthService, CustomerService, PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

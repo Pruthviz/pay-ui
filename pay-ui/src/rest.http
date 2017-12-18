@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/stripe?access_token='06aa539149ffdc29e7f794787ee22630bcc58bfc'
+content-type: application/json
+
+{
+       'amount': 1000,
+            'card_no' :4242424242424242,
+            'ccExpiryMonth' : 02,
+            'ccExpiryYear' :2020,
+            'cvvNumber' : 123
+}
