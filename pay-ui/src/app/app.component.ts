@@ -10,11 +10,15 @@ export class AppComponent implements OnInit {
   title = 'app';
   isLoggedIn: boolean = false;
   isPopIn: boolean = true;
+  UserName: string = "";
   constructor(){
 
   }
 
   ngOnInit() {
+    if(sessionStorage.LoginUser){
+    this.UserName=sessionStorage.LoginUser;
+    }
     if (sessionStorage.token) {
       this.isLoggedIn = true;
     }
