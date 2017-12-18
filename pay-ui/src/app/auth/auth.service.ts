@@ -25,7 +25,7 @@ export class AuthService {
       }
 
     return this.httpClient.post(AppSettings.ApiEndPoint + "/users", data).catch((error: Response) => {
-      return Observable.throw(error.json());
+      return Observable.throw(error);
     });
 
 
@@ -43,7 +43,7 @@ export class AuthService {
         device_signature: 'device_signature'
       }
     return this.httpClient.post(AppSettings.ApiEndPoint + "/auth", data).catch((error: Response) => {
-      return Observable.throw(error.json());
+      return Observable.throw(error);
     });
   }
 

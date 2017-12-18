@@ -13,6 +13,7 @@ import { Message } from 'primeng/primeng';
 export class PaymentComponent implements OnInit {
   display: boolean = false;
   formGroup: FormGroup;
+  amount: any;
 
   msgs: Message[] = [];
   constructor(private fb: FormBuilder, private paymentService:PaymentService,private router:Router) { }
@@ -53,13 +54,14 @@ export class PaymentComponent implements OnInit {
 
   handleStatusSuccess(data, tht) { 
 
-    tht.paymentService.paymentCall(data.id).subscribe(data => {
+    tht.paymentService.paymentCall(tht.amount).subscribe(data => {
       tht.handlePaymentSuccess(data, tht);
     }, err => tht.handlePaymentError(err, tht));
   }
 
   handleStatusError(err, tht) { 
-    tht.msgs.push({ severity: 'error', summary: 'Error', detail: "" });
+    let message = err.error.text.match("HTTP(.*);")[0].substr(13).replace(";", "");
+    tht.msgs.push({ severity: 'error', summary: message, detail: "" });
   }
 
 
@@ -78,7 +80,7 @@ export class PaymentComponent implements OnInit {
 
   handleError(err, that) {
     let message = err.error.message;
-    that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
+    that.msgs.push({ severity: 'error', summary: message, detail: "" });
   }
 
 

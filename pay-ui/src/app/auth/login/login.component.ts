@@ -67,10 +67,7 @@ export class LoginComponent implements OnInit {
           that.loginParam.emit({ isLoggedIn: true, loginUser: data.name.first + " " + data.name.last});
           this.router.navigate(['/customer']);
         }
-       
-       
-        
-
+        sessionStorage.setItem('customerEmail', data.email);
       }, err => this.handleError(err, this))
 
 

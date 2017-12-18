@@ -74,12 +74,12 @@ export class RegisterComponent implements OnInit {
 
 
   save(): void {
-    console.log('Saved: ' + JSON.stringify(this.customerForm.value));
+    
     this.authService.register(this.customerForm.value).subscribe(data => {
       console.log(data.token);
       this.handleSuccess(data, this);
       sessionStorage.setItem('token', data.access_token);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/customer']);
     }, err => this.handleError(err, this));
   }
 
@@ -88,12 +88,18 @@ export class RegisterComponent implements OnInit {
     console.log('success')
     let message = data.message;
     that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
+    that.router.navigate(['/customer']);
   }
 
   handleError(err, that) {
-
-    let message = err.error.message;
-    that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
+    if (err.error.text.match("HTTP(.*);")) {
+      let message = err.error.text.match("HTTP(.*);")[0].substr(13).replace(";", "");
+      that.msgs.push({ severity: 'error', summary: message, detail: "" });
+    }
+    else { 
+      let message = err.error.text.match("HTTP(.*)`")[0].substr(13).replace("`", "");
+      that.msgs.push({ severity: 'error', summary: message, detail: "" });
+    }
 
   }
 

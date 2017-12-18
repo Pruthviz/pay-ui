@@ -55,9 +55,9 @@ export class CustomerComponent implements OnInit {
     this.customer.countryCode = data.mobile.country_Code;
   }
 
-  Edit():void {
-    this.router.navigate(['/editcustomer']);
-}
+  editCustomer() { 
+    this.router.navigateByUrl("/editcustomer");
+  }
 
   handleError(err, that) {
     let message = err.error.message;
