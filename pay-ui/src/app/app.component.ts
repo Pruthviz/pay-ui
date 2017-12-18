@@ -10,6 +10,8 @@ export class AppComponent implements OnInit {
   title = 'app';
   isLoggedIn: boolean = false;
   isPopIn: boolean = true;
+  Isheader: boolean = true;
+  
   UserName: string = "";
   constructor(){
 
@@ -20,9 +22,11 @@ export class AppComponent implements OnInit {
     this.UserName=sessionStorage.LoginUser;
     }
     if (sessionStorage.token) {
+      this.Isheader=false;
       this.isLoggedIn = true;
     }
     else {
+      this.Isheader=true;
       this.isLoggedIn = false;
     }
   }
