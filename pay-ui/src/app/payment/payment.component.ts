@@ -20,7 +20,6 @@ export class PaymentComponent implements OnInit {
   constructor(private fb: FormBuilder, private paymentService: PaymentService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
     this.amount = +this.route.snapshot.paramMap.get('amount');
 
     this.formGroup = this.fb.group({

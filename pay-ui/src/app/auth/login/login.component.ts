@@ -57,17 +57,18 @@ export class LoginComponent implements OnInit {
         this.customer.email = data.email;
         this.customer.mobile = data.mobile.number;
         this.customer.countryCode = data.mobile.country_Code;
+        sessionStorage.setItem('customerEmail', data.email);
         if (data.name.preferred) {
           sessionStorage.setItem('loginUser', data.name.preferred);
           that.loginParam.emit({ isLoggedIn: true, loginUser: data.name.preferred });
-          this.router.navigate(['/customer']);
+          that.router.navigate(['/customer']);
         }
         else { 
           sessionStorage.setItem('loginUser', data.name.first + " " + data.name.last);
           that.loginParam.emit({ isLoggedIn: true, loginUser: data.name.first + " " + data.name.last});
-          this.router.navigate(['/customer']);
+          that.router.navigate(['/customer']);
         }
-        sessionStorage.setItem('customerEmail', data.email);
+        
       }, err => this.handleError(err, this))
 
 

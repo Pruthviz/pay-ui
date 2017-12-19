@@ -1,7 +1,7 @@
 import { AuthService } from './../auth.service';
 import { Customer } from './../../models/customer';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   passwordMessage: string;
   showMiddle: boolean = false;
 
-  
+  @Output() loginParam = new EventEmitter();
 
   private validationMessages = {
     required: 'Please enter your password.',
@@ -77,18 +77,27 @@ export class RegisterComponent implements OnInit {
     
     this.authService.register(this.customerForm.value).subscribe(data => {
       console.log(data.token);
-      this.handleSuccess(data, this);
       sessionStorage.setItem('token', data.access_token);
-      this.router.navigate(['/customer']);
+      this.msgs.push({ severity: 'success', summary: "Success", detail: "Registration Successful" });
+      
+      sessionStorage.setItem('customerEmail', data.email);
+      if (data.name.preferred) {
+        sessionStorage.setItem('loginUser', data.name.preferred);
+        this.loginParam.emit({ isLoggedIn: true, loginUser: data.name.preferred });
+        this.router.navigate(['/customer']);
+      }
+      else {
+        sessionStorage.setItem('loginUser', data.name.first + " " + data.name.last);
+        this.loginParam.emit({ isLoggedIn: true, loginUser: data.name.first + " " + data.name.last });
+        this.router.navigate(['/customer']);
+      }
+
+
     }, err => this.handleError(err, this));
   }
 
 
-  handleSuccess(data, that) {
-    console.log('success')
-    let message = data.message;
-    that.router.navigate(['/customer']);
-  }
+ 
 
   handleError(err, that) {
     if (err.error.text.match("HTTP(.*);")) {
