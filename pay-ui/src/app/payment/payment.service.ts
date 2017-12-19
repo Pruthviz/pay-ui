@@ -25,13 +25,14 @@ export class PaymentService {
 
     payAmount(formData) {
 
+    let month = formData.expirationDate.split('/')[0].trim();
+    let year = formData.expirationDate.split('/')[1].trim();
         let data = {
-            'amount': 10000,
-           
-            'ccExpiryMonth' : 3,
-            'ccExpiryYear' :2020,
-            'cvvNumber': 232,
-            "card_no":"4242424242424242"
+            'amount': formData.amount, 
+            'ccExpiryMonth' : Number(month),
+            'ccExpiryYear' :Number(year),
+            'cvvNumber': formData.cvc,
+            "card_no":formData.creditCard
         }
 
         return this.httpClient.post(AppSettings.ApiEndPoint + "/stripe?access_token=" + sessionStorage.token, data).catch((error: Response) => {
@@ -49,10 +50,10 @@ export class PaymentService {
     }
 
 
-    paymentCall(amount) {
+    paymentCall(amount) {debugger
         let data = {
-            'amount': 10000,
-            'email':'test201@gmail.com'
+            'amount': amount,
+            'email':sessionStorage.customerEmail
         }
         return this.httpClient.post(AppSettings.ApiEndPoint + "/payment?access_token=" + sessionStorage.token, data).catch((error: Response) => {
             return Observable.throw(error);

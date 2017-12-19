@@ -23,7 +23,8 @@ export class PaymentComponent implements OnInit {
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
       expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
       cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
-      cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])]
+      cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      amount: ['', Validators.compose([Validators.required])]
     });
   }
 
