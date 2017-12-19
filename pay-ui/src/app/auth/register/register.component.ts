@@ -87,7 +87,6 @@ export class RegisterComponent implements OnInit {
   handleSuccess(data, that) {
     console.log('success')
     let message = data.message;
-    that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
     that.router.navigate(['/customer']);
   }
 

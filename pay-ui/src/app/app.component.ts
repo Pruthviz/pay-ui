@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Spinkit } from 'ng-http-loader/spinkits';
 @Component({
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   Isheader: boolean = true;
   showLogin: boolean = true;
   loginUser: string = "";
-  constructor(){
+  constructor(private router:Router){
 
   }
 
@@ -51,7 +52,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     sessionStorage.clear();
-    this.isLoggedIn=false;
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('/');
   }
 
 }

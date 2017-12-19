@@ -1,9 +1,10 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PaymentService } from './payment.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
 import { Message } from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-payment',
@@ -16,7 +17,7 @@ export class PaymentComponent implements OnInit {
   amount: any;
 
   msgs: Message[] = [];
-  constructor(private fb: FormBuilder, private paymentService:PaymentService,private router:Router) { }
+  constructor(private fb: FormBuilder, private paymentService:PaymentService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({

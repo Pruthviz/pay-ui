@@ -52,7 +52,7 @@ export class CustomerComponent implements OnInit {
     this.customer.preferredName = data.name.preferred;
     this.customer.email = data.email;
     this.customer.mobile = data.mobile.number;
-    this.customer.countryCode = data.mobile.country_Code;
+    this.customer.countryCode = data.mobile.country_code;
   }
 
   editCustomer() { 

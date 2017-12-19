@@ -1,3 +1,4 @@
+import { CanActivateViaAuthGuard } from './auth/auth.guard';
 import { PaymentService } from './payment/payment.service';
 import { CustomerService } from './customer/customer.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,7 +44,7 @@ import { GrowlModule } from 'primeng/primeng';
     DialogModule,
     GrowlModule
   ],
-  providers: [AuthService, CustomerService, PaymentService],
+  providers: [AuthService, CustomerService, PaymentService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

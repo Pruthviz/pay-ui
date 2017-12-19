@@ -1,3 +1,4 @@
+import { CanActivateViaAuthGuard } from './auth/auth.guard';
 import { PaymentComponent } from './payment/payment.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -9,9 +10,18 @@ import { RegisterComponent } from './auth/register/register.component';
 const routes: Routes = [
   { path: '', redirectTo: 'customer', pathMatch: 'full' },
   { path: "register", component: RegisterComponent },
-  { path: "customer", component: CustomerComponent },
-  { path: "editcustomer", component: EditCustomerComponent },
-  { path: "payment", component: PaymentComponent }
+  {
+    path: "customer", component: CustomerComponent, canActivate: [
+      CanActivateViaAuthGuard
+    ] },
+  {
+    path: "editcustomer", component: EditCustomerComponent, canActivate: [
+      CanActivateViaAuthGuard
+    ] },
+  {
+    path: "payment", component: PaymentComponent, canActivate: [
+      CanActivateViaAuthGuard
+    ] }
 ];
 
 @NgModule({

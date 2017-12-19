@@ -14,9 +14,13 @@ export class EditCustomerComponent implements OnInit {
   msgs: any = [];
   customerForm: FormGroup;
   showMiddle: boolean = true;
+  title = ["Mr", "Miss", "Mrs", "Madam"];
+  titleVal = "";
   // isDisabled = false; 
   constructor(private fb: FormBuilder, private customerService: CustomerService, public router: Router) { }
 
+
+ 
   ngOnInit(): void {
     this.getCustomer();   
   }
@@ -30,11 +34,10 @@ this.customerForm = this.fb.group({
       preferredName: "",
       email: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: ["", [Validators.required, Validators.minLength(10)]],
-      countryCode: ["", [Validators.required, Validators.minLength(2)]]
-      //,
-      // gender: '',
-      // title: '',
-      // nationality: ''
+      countryCode: ["", [Validators.required, Validators.minLength(2)]],
+      gender: '',
+      title: '',
+      nationality: ''
     });
 
 
@@ -46,7 +49,7 @@ this.customerForm = this.fb.group({
 
 
   update(): void {
-    this.customerService.update(this.customerForm.value).subscribe(data => {
+    this.customerService.update(this.customerForm.value, this.titleVal).subscribe(data => {
       this.handleSuccess(data, this);
       this.router.navigate(['/customer']);
     }, err => this.handleError(err, this));
@@ -63,16 +66,13 @@ this.customerForm = this.fb.group({
       preferredName: data.name.preferred,
       email: [data.email, [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: [data.mobile.number, [Validators.required, Validators.minLength(10)]],
-      countryCode: [data.mobile.country_code, [Validators.required, Validators.minLength(2)]]
-      //,
-      // gender: '',
-      // title: '',
-      // nationality: ''
+      countryCode: [data.mobile.country_code, [Validators.required, Validators.minLength(2)]],
+      gender: '',
+      title: '',
+      nationality: ''
     });
 
-    console.log('success')
-    let message = data.message;
-    that.msgs.push({ severity: 'success', summary: 'valid', detail: message });
+    
   }
 
   handleError(err, that) {

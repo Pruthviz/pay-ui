@@ -23,10 +23,10 @@ export class CustomerService {
         });
     }
 
-    update(formData) { 
+    update(formData,title) { 
 
         let data = {
-            title: formData.title,
+            title: "Mr",
             middle_name: formData.middleName,
             nationality: formData.nationality,
             gender: formData.gender,

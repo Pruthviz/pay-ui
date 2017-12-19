@@ -46,3 +46,17 @@ a.login-a-user span {
     background: #337ab7;
     height: 50px;
 }
+
+#footer {
+    background: #ecf7ff;
+}
+
+@media only screen and (min-width: 767px) {
+    .ui-growl {
+        position: fixed;
+        top: 80px;
+        left: 50%;
+        width: 20em;
+        transform: translate(-50%, -50%);
+    }
+}

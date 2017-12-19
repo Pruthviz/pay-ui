@@ -9,6 +9,23 @@
 
 
 
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="titleId">Title</label>
+
+                    <div class="col-md-5">
+
+
+                        <select class="form-control" id="titleId" formControlName="title" name="state">
+                                <option value="" disabled selected hidden>Select a Title...</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Madam">Madam</option>
+                            </select>
+
+                    </div>
+                </div>
+
 
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('firstName').touched || 
                                               customerForm.get('firstName').dirty) &&
@@ -42,10 +59,10 @@
                 <div [hidden]="!showMiddle" class="form-group" [ngClass]="{'has-error': (customerForm.get('middleName').touched || 
                                               customerForm.get('middleName').dirty) &&
                                               !customerForm.get('middleName').valid }">
-                    <label class="col-md-3 control-label label-disabled" for="middleNameId">Middle Name</label>
+                    <label class="col-md-3 control-label" for="middleNameId">Middle Name</label>
 
                     <div class="col-md-5">
-                        <input disabled=true class="form-control" id="middleNameId" type="text" placeholder="Middle Name (optional)" formControlName="middleName" />
+                        <input class="form-control" id="middleNameId" type="text" placeholder="Middle Name (optional)" formControlName="middleName" />
                     </div>
                 </div>
 
@@ -102,10 +119,10 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('phone').touched || 
                                               customerForm.get('phone').dirty) &&
                                               !customerForm.get('phone').valid }">
-                    <label class="col-md-3 control-label" for="phoneId">Phone</label>
+                    <label class="col-md-3 control-label label-disabled" for="phoneId">Phone</label>
 
                     <div class="col-md-5">
-                        <input class="form-control" id="phoneId" type="tel" placeholder="Phone" formControlName="phone" />
+                        <input disabled=true class="form-control" id="phoneId" type="tel" placeholder="Phone" formControlName="phone" />
                         <span class="help-block" *ngIf="(customerForm.get('phone').touched || customerForm.get('phone').dirty) && customerForm.get('phone').errors">
                             <span *ngIf="customerForm.get('phone').errors.required">
                                 Please enter your phone number.
@@ -117,10 +134,10 @@
                 <div class="form-group" [ngClass]="{'has-error': (customerForm.get('countryCode').touched || 
                                               customerForm.get('countryCode').dirty) &&
                                               !customerForm.get('countryCode').valid }">
-                    <label class="col-md-3 control-label" for="countryCodephoneId">Mobile Country Code</label>
+                    <label class="col-md-3 control-label label-disabled" for="countryCodephoneId">Mobile Country Code</label>
 
                     <div class="col-md-5">
-                        <input class="form-control" id="countryCodeId" type="tel" placeholder="Mobile Country Code" formControlName="countryCode" />
+                        <input disabled=true class="form-control" id="countryCodeId" type="tel" placeholder="Mobile Country Code" formControlName="countryCode" />
                         <span class="help-block" *ngIf="(customerForm.get('countryCode').touched || customerForm.get('countryCode').dirty) && customerForm.get('countryCode').errors">
                             <span *ngIf="customerForm.get('countryCode').errors.required">
                                 Please select your mobile country code.
@@ -128,6 +145,38 @@
                         </span>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Gender</label>
+                    <div class="col-md-5">
+                        <label class="radio-inline">
+                                <input type="radio" 
+                                       value="male" 
+                                       formControlName = "gender"
+                                       >Male
+                            </label>
+                        <label class="radio-inline">
+                                <input type="radio" 
+                                       value="female" 
+                                       formControlName = "gender"
+                                       >Female
+                            </label>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="nationalityId">Nationality</label>
+
+                    <div class="col-md-5">
+                        <input class="form-control" id="nationalityId" type="text" placeholder="Nationality (optional)" formControlName="nationality" />
+                    </div>
+                </div>
+
+
+
                 <br />
                 <div class="form-group">
                     <div class="col-md-2"></div>
