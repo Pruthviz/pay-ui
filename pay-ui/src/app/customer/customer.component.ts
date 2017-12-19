@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -18,7 +18,8 @@ export class CustomerComponent implements OnInit {
   customer: any={};
   msgs: any = [];
   walletBalance;
-  constructor(public router: Router, private customerService: CustomerService) { }
+  amount;
+  constructor(public router: Router, private customerService: CustomerService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -66,9 +67,7 @@ export class CustomerComponent implements OnInit {
 
 
 
-  gotoPayment() {
-    this.router.navigateByUrl('/payment');
-    }
+  
 }
 
 

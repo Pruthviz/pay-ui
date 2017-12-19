@@ -50,7 +50,7 @@ export class PaymentService {
     }
 
 
-    paymentCall(amount) {debugger
+    paymentCall(amount) {
         let data = {
             'amount': amount,
             'email':sessionStorage.customerEmail

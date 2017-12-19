@@ -10,7 +10,16 @@
 
             Wallet Balance: {{walletBalance}}
             <br>
-            <input type="button" value="TopUp" (click)="gotoPayment()">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="amount">Enter amount</label>
+
+                <div class="col-md-4">
+                    <input class="form-control" id="amount" type="number" placeholder="Enter Amount (required)" [(ngModel)]="amount" />
+                </div>
+            </div>
+
+            <button class="btn btn-primary" [disabled]="!amount" type="button" [routerLink]="['/payment', amount]">TopUp</button>
         </div>
 
         <div class="col-sm-7">

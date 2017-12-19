@@ -22,19 +22,6 @@
                     <form class="form-horizontal" novalidate (ngSubmit)="pay()" [formGroup]="formGroup">
                         <fieldset>
 
-
- <div class="form-group" [ngClass]="{'has-error': (formGroup.get('amount').touched || formGroup.get('amount').dirty) && !formGroup.get('amount').valid }">
-                                <label class="col-md-4 control-label" for="amount">amount</label>
-
-                                <div class="col-md-7">
-                                    <input class="form-control" id="amount" type="number" placeholder="Enter Amount (required)" formControlName="amount" />
-
-                                </div>
-                            </div>
-
-<br><br>
-
-
                             <div class="form-group" [ngClass]="{'has-error': (formGroup.get('cardName').touched || formGroup.get('cardName').dirty) && !formGroup.get('cardName').valid }">
                                 <label class="col-md-4 control-label" for="cardName">Name</label>
 
@@ -87,7 +74,7 @@
                             <button class="btn btn-primary"
                                     type="submit"
                                     [disabled]="!formGroup.valid">
-                                Pay {{formGroup.value.amount?"$":""}}{{formGroup.value.amount}}
+                                Pay {{amount?"$":""}}{{amount}}
                             </button>
                         </span>
 

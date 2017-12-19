@@ -17,15 +17,17 @@ export class PaymentComponent implements OnInit {
   amount: any;
 
   msgs: Message[] = [];
-  constructor(private fb: FormBuilder, private paymentService:PaymentService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private paymentService: PaymentService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    
+    this.amount = +this.route.snapshot.paramMap.get('amount');
+
     this.formGroup = this.fb.group({
       creditCard: ['', [<any>CreditCardValidator.validateCCNumber]],
       expirationDate: ['', [<any>CreditCardValidator.validateExpDate]],
       cvc: ['', [<any>Validators.required, <any>Validators.minLength(3), <any>Validators.maxLength(4)]],
-      cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      amount: ['', Validators.compose([Validators.required])]
+      cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])]
     });
   }
 
