@@ -1,9 +1,9 @@
 .dropdownChild {
-  width: 10%;
+  width:60%;
   border: 1px solid #eee;
   position: absolute;
-  top:3.2% !important;
-  left:1% !important;
+  top: 100.2% !important;
+  left:5% !important;
   background: #fff;
   z-index: 9999999;
 }
@@ -14,10 +14,14 @@
   padding-left: 15px;
 }
 .login-a-user{
+  font-size:30px;
   text-decoration: none;
   cursor: pointer;
+  color:#fff;
 }
-
+a.login-a-user span {
+  vertical-align: middle;
+}
 .dropdownChild ul li:hover {
   background-color: #337ab7;
 }
@@ -31,4 +35,7 @@ padding: 0;
 .dropdownChild ul li:hover a {
   color: white;
   cursor: pointer;
+}
+#headerLayout{
+  background:#337ab7;height:50px;
 }
