@@ -23,16 +23,16 @@ export class PaymentService {
         });
     }
 
-    payAmount(formData) {
+    payAmount(formData,amount) {
 
     let month = formData.expirationDate.split('/')[0].trim();
     let year = formData.expirationDate.split('/')[1].trim();
         let data = {
-            'amount': formData.amount, 
+            'amount': amount, 
             'ccExpiryMonth' : Number(month),
             'ccExpiryYear' :Number(year),
             'cvvNumber': formData.cvc,
-            "card_no":formData.creditCard
+            "card_no": formData.creditCard.replace(" ", "").replace(" ", "").replace(" ", "").replace(" ", "")
         }
 
         return this.httpClient.post(AppSettings.ApiEndPoint + "/stripe?access_token=" + sessionStorage.token, data).catch((error: Response) => {

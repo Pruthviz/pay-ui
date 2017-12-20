@@ -15,7 +15,7 @@ export class PaymentComponent implements OnInit {
   display: boolean = false;
   formGroup: FormGroup;
   amount: any;
-  txnID: any;
+  txtID: any;
   msgs: Message[] = [];
   constructor(private fb: FormBuilder, private paymentService: PaymentService, private router: Router, private route: ActivatedRoute) { }
 
@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit {
   }
 
   pay() { 
-    this.paymentService.payAmount(this.formGroup.value).subscribe(data => {
+    this.paymentService.payAmount(this.formGroup.value,this.amount).subscribe(data => {
       this.handleSuccess(data, this);
     }, err => this.handleError(err, this));
   }
@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit {
 
   handleStatusSuccess(data, tht) { 
     tht.txtID = data.id;
-    tht.paymentService.paymentCall(tht.amount).subscribe(data => {
+    tht.paymentService.paymentCall(tht.amount,tht.txtID).subscribe(data => {
       tht.handlePaymentSuccess(data, tht);
     }, err => tht.handlePaymentError(err, tht));
   }
