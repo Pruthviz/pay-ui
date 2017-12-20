@@ -36,7 +36,7 @@
                                 <label class="col-md-4 control-label" for="creditCard">Card Number</label>
 
                                 <div class="col-md-7">
-                                    <input class="form-control" id="cc-number" formControlName="creditCard" type="tel" autocomplete="cc-number" ccNumber maxlength="19" placeholder="**** **** **** ****" />
+                                    <input class="form-control" id="cc-number" formControlName="creditCard" type="tel" autocomplete="cc-number" ccNumber placeholder="**** **** **** ****" />
 
                                 </div>
                             </div>
@@ -76,6 +76,19 @@
                                     [disabled]="!formGroup.valid">
                                 Pay {{amount?"$":""}}{{amount}}
                             </button>
+
+                        </span>
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <span>
+                            <button (click)="cancel()" class="btn btn-primary"
+                                    type="button"
+                                    >
+                                Cancel 
+                            </button>
+                            
                         </span>
 
                                 </div>

@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormA
 
 import 'rxjs/add/operator/debounceTime';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-edit-customer',
@@ -17,7 +19,7 @@ export class EditCustomerComponent implements OnInit {
   title = ["Mr", "Miss", "Mrs", "Madam"];
   titleVal = "";
   // isDisabled = false; 
-  constructor(private fb: FormBuilder, private customerService: CustomerService, public router: Router) { }
+  constructor(private fb: FormBuilder, private customerService: CustomerService, public router: Router, private _location: Location) { }
 
 
  
@@ -73,6 +75,10 @@ this.customerForm = this.fb.group({
   handleError(err, that) {
     let message = err.error.message;
     that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
+  }
+
+  back() { 
+    this._location.back();
   }
 
 }

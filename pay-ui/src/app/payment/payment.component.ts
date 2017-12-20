@@ -86,5 +86,9 @@ export class PaymentComponent implements OnInit {
     that.msgs.push({ severity: 'error', summary: "Transaction Failed", detail: "Reason: " + message });
   }
 
+  cancel() { 
+    this.router.navigateByUrl("/customer");
+  }
+
 
 }

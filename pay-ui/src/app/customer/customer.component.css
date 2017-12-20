@@ -1,0 +1,48 @@
+.profile-pic {
+    height: 100px;
+    text-align: center;
+}
+
+.profile-pic img {
+    height: 100px;
+    width: 100px;
+}
+
+.topup-box {
+    background: #f8f8f8;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.wallet-box {
+    font-size: 20px;
+}
+
+span.wallet-val {
+    font-size: 30px;
+}
+
+.recharge-box {
+    margin-top: 16px;
+}
+
+.text-input {
+    width: 50%;
+}
+
+.proceed {
+    padding-top: 15px;
+}
+
+p.p-req {
+    font-size: 20px;
+}
+
+p.p-enter {
+    font-size: 15px;
+}
+
+.profile-pic i.fa.fa-user {
+    zoom: 7;
+}

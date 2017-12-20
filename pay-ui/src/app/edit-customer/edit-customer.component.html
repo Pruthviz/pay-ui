@@ -1,5 +1,5 @@
-<p-messages [(value)]="msgs">
-</p-messages>
+<p-growl [(value)]="msgs">
+</p-growl>
 
 <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-login">
@@ -170,12 +170,20 @@
                             <br />
                             <div class="form-group">
                                 <div class="col-md-2"></div>
-                                <div class=" col-md-4 col-md-offset-2 ">
+                                <div class=" col-md-4">
                                     <span>
                             <button class="btn btn-primary "
                                     type="submit "
-                                    [disabled]="!customerForm.valid ">
+                                    [disabled]="!customerForm.valid">
                                 Update
+                            </button>
+                        </span>
+
+                                </div>
+                                <div class=" col-md-4">
+                                    <span>
+                            <button class="btn btn-primary" (click)="back()">
+                                Cancel
                             </button>
                         </span>
 
