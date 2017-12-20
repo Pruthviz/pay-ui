@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       passwordGroup: this.fb.group({
-        password: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
         confirmPassword: ['', Validators.required],
       }, { validator: passwordMatcher }),
       firstName: ['', [Validators.required, Validators.minLength(3)]],
@@ -76,17 +76,22 @@ export class RegisterComponent implements OnInit {
   save(): void {
     
     this.authService.register(this.customerForm.value).subscribe(data => {
-      console.log(data.token);
+      if (data.password) { 
+        this.msgs.push({ severity: 'error', summary: "Registration Failed", detail: "password format is invalid" });
+        return;
+      }  
       sessionStorage.setItem('token', data.access_token);
-      this.msgs.push({ severity: 'success', summary: "Success", detail: "Your Registration Successful" });
+     
       
       sessionStorage.setItem('customerEmail', data.email);
       if (data.name.preferred) {
+        this.msgs.push({ severity: 'success', summary: "Success", detail: "Your Registration Successful" });
         sessionStorage.setItem('loginUser', data.name.preferred);
         this.loginParam.emit({ isLoggedIn: true, loginUser: data.name.preferred });
         this.router.navigate(['/customer']);
       }
       else {
+        this.msgs.push({ severity: 'success', summary: "Success", detail: "Your Registration Successful" });
         sessionStorage.setItem('loginUser', data.name.first + " " + data.name.last);
         this.loginParam.emit({ isLoggedIn: true, loginUser: data.name.first + " " + data.name.last });
         this.router.navigate(['/customer']);

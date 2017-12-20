@@ -1,6 +1,6 @@
 <p-growl [(value)]="msgs"></p-growl>
 <p-dialog header="Title" [(visible)]="display">
-    Payment Successful.
+    Payment Successful for the Transaction: {{txnID}}
     <button class="btn btn-primary" type="button" (click)="gotoProfile()">OK</button>
 </p-dialog>
 

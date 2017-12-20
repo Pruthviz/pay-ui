@@ -89,18 +89,21 @@
 
                 <div class="col-md-7">
                     <input class="form-control" id="passwordId" type="password" placeholder="Password (required)" formControlName="password" />
-                    <!-- <span class="help-block" *ngIf="(customerForm.get('passwordGroup.password').touched || 
+                    <span class="help-block" *ngIf="(customerForm.get('passwordGroup.password').touched || 
                                                             customerForm.get('passwordGroup.password').dirty) && 
-                                                            (customerForm.get('passwordGroup.password').errors ||
-                                                             customerForm.get('password').errors)">
+                                                            (customerForm.get('passwordGroup.password').invalid
+                                                            )">
                             <span *ngIf="customerForm.get('passwordGroup.password').errors?.required">
                                     Please enter your password.
                                 </span>
 
-                            <span *ngIf="customerForm.get('passwordGroup.password').errors?.minlength">
-                                   Password must contain minimum of 6 characters.
+                    <span *ngIf="customerForm.get('passwordGroup.password').errors?.minlength">
+                                   Password must contain minimum of 8 characters.
                                 </span>
-                            </span> -->
+                    <span *ngIf="customerForm.get('passwordGroup.password').errors?.maxlength">
+                                   Password length maximum of 32 characters.
+                                </span>
+                    </span>
                     <span class="help-block" *ngIf="passwordMessage">
                                 {{ passwordMessage }}
                             </span>
