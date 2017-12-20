@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="amount">Enter amount</label>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input class="form-control" id="amount" type="number" placeholder="Enter Amount (required)" [(ngModel)]="amount" />
                 </div>
             </div>
@@ -22,8 +22,18 @@
         <div class="col-sm-7">
             <form class="form-horizontal">
                 <fieldset>
+
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="firstNameId">First Name :</label>
+                        <label class="col-md-5 control-label" for="firstNameId">Title :</label>
+
+                        <div class="col-md-5">
+                            <label class="control-label label-alter">{{customer?.title}}</label>
+                            <!-- {{customer.firstName}} -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="firstNameId">First Name :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.firstName}}</label>
@@ -32,7 +42,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="middleNameId">Middle Name :</label>
+                        <label class="col-md-5 control-label" for="middleNameId">Middle Name :</label>
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.middleName}}</label>
                             <!-- {{customer.middleName}} -->
@@ -41,7 +51,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="lastNameId">Last Name :</label>
+                        <label class="col-md-5 control-label" for="lastNameId">Last Name :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.lastName}}</label>
@@ -51,18 +61,25 @@
 
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="preferredNameId">Preferred Name :</label>
+                        <label class="col-md-5 control-label" for="preferredNameId">Preferred Name :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.preferredName}}</label>
                             <!-- {{customer.preferredName}} -->
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="GenderId">Gender :</label>
 
+                        <div class="col-md-5">
+                            <label class="control-label label-alter">{{customer?.gender}}</label>
+                            <!-- {{customer.firstName}} -->
+                        </div>
+                    </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="emailId2">Email Address :</label>
+                        <label class="col-md-5 control-label" for="emailId2">Email Address :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.email}}</label>
@@ -71,7 +88,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="phoneId">Phone :</label>
+                        <label class="col-md-5 control-label" for="phoneId">Phone :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.mobile}}</label>
@@ -80,13 +97,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="countryCodephoneId">Mobile Country Code :</label>
+                        <label class="col-md-5 control-label" for="countryCodephoneId">Mobile Country Code :</label>
 
                         <div class="col-md-5">
                             <label class="control-label label-alter">{{customer?.countryCode}}</label>
                             <!-- {{customer.countryCode}} -->
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="GenderId">Nationality :</label>
+
+                        <div class="col-md-5">
+                            <label class="control-label label-alter">{{customer?.nationality}}</label>
+                            <!-- {{customer.firstName}} -->
+                        </div>
+                    </div>
+
 
                     <br />
                     <div class="form-group">

@@ -49,6 +49,9 @@ export class CustomerComponent implements OnInit {
     this.customer = {};
     this.customer.firstName = data.name.first;
     this.customer.middleName = data.name.middle;
+    this.customer.title = data.title;
+    this.customer.gender = data.gender;
+    this.customer.nationality = data.nationality;
     this.customer.lastName = data.name.last;
     this.customer.preferredName = data.name.preferred;
     this.customer.email = data.email;

@@ -64,7 +64,7 @@ export class PaymentComponent implements OnInit {
 
   handleStatusError(err, tht) { 
     let message = err.error.text.match("HTTP(.*);")[0].substr(13).replace(";", "");
-    tht.msgs.push({ severity: 'error', summary: message, detail: "" });
+    tht.msgs.push({ severity: 'error', summary: "Transaction Failed", detail: "Reason: "+message });
   }
 
 
@@ -75,7 +75,7 @@ export class PaymentComponent implements OnInit {
 
   handlePaymentError(err, tht2) {
     let message = err.error.text.match("HTTP(.*);")[0].substr(13).replace(";", "");
-    tht2.msgs.push({ severity: 'error', summary: message, detail: "" });
+    tht2.msgs.push({ severity: 'error', summary: "Transaction Failed", detail: "Reason: " + message });
   }
 
 
@@ -83,7 +83,7 @@ export class PaymentComponent implements OnInit {
 
   handleError(err, that) {
     let message = err.error.message;
-    that.msgs.push({ severity: 'error', summary: message, detail: "" });
+    that.msgs.push({ severity: 'error', summary: "Transaction Failed", detail: "Reason: " + message });
   }
 
 

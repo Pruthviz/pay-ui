@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.customerForm.value).subscribe(data => {
       console.log(data.token);
       sessionStorage.setItem('token', data.access_token);
-      this.msgs.push({ severity: 'success', summary: "Success", detail: "Registration Successful" });
+      this.msgs.push({ severity: 'success', summary: "Success", detail: "Your Registration Successful" });
       
       sessionStorage.setItem('customerEmail', data.email);
       if (data.name.preferred) {
@@ -102,11 +102,11 @@ export class RegisterComponent implements OnInit {
   handleError(err, that) {
     if (err.error.text.match("HTTP(.*);")) {
       let message = err.error.text.match("HTTP(.*);")[0].substr(13).replace(";", "");
-      that.msgs.push({ severity: 'error', summary: message, detail: "" });
+      that.msgs.push({ severity: 'error', summary: "Your Registration Failed.", detail: "Reason: " + message });
     }
     else { 
       let message = err.error.text.match("HTTP(.*)`")[0].substr(13).replace("`", "");
-      that.msgs.push({ severity: 'error', summary: message, detail: "" });
+      that.msgs.push({ severity: 'error', summary: "Your Registration Failed.", detail: "Reason: " + message });
     }
 
   }

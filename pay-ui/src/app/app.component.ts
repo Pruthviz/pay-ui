@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
   logout() {
     sessionStorage.clear();
     this.isLoggedIn = false;
+    this.showLogin = true;
     this.router.navigateByUrl('/');
   }
 

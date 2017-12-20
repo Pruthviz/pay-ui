@@ -40,7 +40,6 @@ this.customerForm = this.fb.group({
       nationality: ''
     });
 
-
     this.customerService.getCustomer().subscribe(data => {
       this.handleSuccess(data, this);
     }, err => this.handleError(err, this))
@@ -49,7 +48,7 @@ this.customerForm = this.fb.group({
 
 
   update(): void {
-    this.customerService.update(this.customerForm.value, this.titleVal).subscribe(data => {
+    this.customerService.update(this.customerForm.value).subscribe(data => {
       this.handleSuccess(data, this);
       this.router.navigate(['/customer']);
     }, err => this.handleError(err, this));
@@ -57,8 +56,6 @@ this.customerForm = this.fb.group({
 
 
   handleSuccess(data, that) {
-
-
     that.customerForm = that.fb.group({
       firstName: [data.name.first, [Validators.required, Validators.minLength(3)]],
       middleName: data.name.middle,
@@ -67,22 +64,16 @@ this.customerForm = this.fb.group({
       email: [data.email, [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: [data.mobile.number, [Validators.required, Validators.minLength(10)]],
       countryCode: [data.mobile.country_code, [Validators.required, Validators.minLength(2)]],
-      gender: '',
-      title: '',
-      nationality: ''
+      gender: data.gender,
+      title: data.title,
+      nationality: data.nationality
     });
-
-    
   }
 
   handleError(err, that) {
     let message = err.error.message;
     that.msgs.push({ severity: 'error', summary: 'invalid', detail: message });
   }
-
-
-
-
 
 }
 
